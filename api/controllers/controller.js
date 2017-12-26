@@ -55,11 +55,12 @@ exports.delete_a_task = function(req, res) {
 
 exports.generate_xml = function(req, res) {
     var xml = js2xmlparser.parse("input", req.body);
-    fs.writeFile('test.xml', xml, function(err) {
+    var fileName = './downloads/SCSIM_XML'+Date.now()+'.xml';
+    fs.writeFile(fileName, xml, function(err) {
         if (err)
         throw err;
-    var stat = fs.statSync('test.xml');
-    res.download('test.xml');
+    var stat = fs.statSync(fileName);
+    res.download(fileName);
 
 });
 }
